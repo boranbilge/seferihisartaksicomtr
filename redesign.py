@@ -16,6 +16,8 @@ import shutil
 shutil.copyfile(BASE/'mobile.css',root/'mobile.css')
 runpy.run_path(str(BASE/'build_base.py'))
 runpy.run_path(str(BASE/'make_assets.py'))
+for service_asset in (BASE/'assets-source').glob('service-*.webp'):
+ shutil.copyfile(service_asset,root/'assets'/service_asset.name.removeprefix('service-'))
 areas=[('camikebir','Camikebir'),('hidirlik','Hıdırlık'),('turabiye','Turabiye'),('colak-ibrahim-bey','Çolak İbrahim Bey'),('tepecik','Tepecik'),('sigacik','Sığacık'),('akarca','Akarca'),('ulamis','Ulamış')]
 localcopy={
  'camikebir':('Merkezde bir sonraki durak.','Camikebir’deki yolculuğunuz için sokak adınızı ve bina numaranızı paylaşın. Merkezdeki alışveriş, ziyaret veya günlük işlerinize giderken alınacağınız noktayı telefonda netleştirebilirsiniz.','Merkez içindeki buluşmalarda sokak adıyla birlikte yakındaki belirgin bir noktayı iletmek, adresin anlaşılmasını kolaylaştırır.'),
@@ -101,6 +103,13 @@ for path in root.rglob('index.html'):
  s=s.replace('Bir arama. Bir konum.<br>Yolculuğun ilk adımı bu kadar.','Alınacağınız yer, varış adresi ve yolcu sayısı.<br>Geri kalanını görüşerek netleştirelim.')
  s=s.replace('Bir telefon.<br><em>Yepyeni bir rota.</em>','Bizi arayın.<br><em>Ya da konum gönderin.</em>')
  s=s.replace('Şehrin ritmini biliyoruz.<br>Yolculuğunuzu önemsiyoruz.','Seferihisar merkez ve çevre mahalleler.<br>Telefon ve WhatsApp: 0551 218 22 44')
+ # Real service imagery replaces decorative symbols on every regional page too.
+ service_images=[('merkez-mahalleler','Seferihisar mahalle ulaşımını temsil eden Ege sokağında sarı taksi'),('sigacik-sahil','Sığacık sahil ulaşımını temsil eden marina kıyısında sarı taksi'),('havalimani','Havalimanı ulaşımını temsil eden terminal önünde sarı taksi')]
+ for image,alt in service_images:
+  s=re.sub(r'<span class="service-icon">.*?</span>',f'<div class="service-visual"><img src="/assets/{image}.webp" width="960" height="640" alt="{alt}" loading="lazy" decoding="async"></div>',s,count=1)
+ # A centered callout below the introduction replaces the detached header ad.
+ s=s.replace('</header>'+banner,'</header>')
+ s=s.replace('<div class="route-strip">',banner+'<div class="route-strip">',1)
  path.write_text(s,encoding='utf-8')
 
 for f in ['robots.txt','sitemap.xml']:

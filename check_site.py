@@ -38,7 +38,9 @@ for file in pages:
  assert any(a.get('href')=='tel:'+cfg['telephone'] for a in doc.links)
  assert any(a.get('href','').startswith('https://wa.me/'+cfg['whatsapp']) for a in doc.links)
  assert 'send-whatsapp' in doc.ids and 'trip-form' in doc.ids
- assert s.index('call-banner')>s.index('</header>')
+ assert s.index('call-banner')>s.index('hero-art')
+ assert s.count('class="service-visual"')==3
+ assert '/mobile.css' in s
  data=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',s).group(1))
  biz=next(n for n in data['@graph'] if n['@type']=='LocalBusiness')
  assert biz['telephone']==cfg['telephone'] and biz['name']==cfg['name']
