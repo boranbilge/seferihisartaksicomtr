@@ -27,3 +27,8 @@ html{scroll-padding-top:100px}body{background:#09131c;color:var(--ink);overflow-
  .section{scroll-margin-top:0}
  .skip:focus{position:fixed;z-index:40}
 }
+
+/* User supplied premium banner: same slot on desktop, full readable image on mobile. */
+.call-banner>a{border-radius:0}
+.call-banner img{aspect-ratio:1280/280;object-fit:contain}
+@media(max-width:680px){.call-banner>a{width:100%;border-radius:0}}

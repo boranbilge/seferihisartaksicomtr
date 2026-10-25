@@ -68,6 +68,11 @@ assert gif.size==(960,180) and gif.n_frames>1
 assert 'loop' not in gif.info,'GIF should play once'
 assert (ROOT/'assets/taksi-cagir.gif').stat().st_size<250_000
 assert Image.open(ROOT/'assets/social.png').size==(1200,630)
+premium=Image.open(ROOT/'assets/banner-premium.gif')
+assert premium.size==(1280,280) and premium.n_frames==10
+assert (ROOT/'assets/banner-premium.gif').read_bytes()==(BASE/'assets-source/banner-premium.gif').read_bytes()
+assert Image.open(ROOT/'assets/banner-premium-still.png').size==(1280,280)
+assert all('/assets/banner-premium.gif' in p.read_text(encoding='utf-8') for p in pages)
 for p in (ROOT/'assets').glob('*.svg'):ET.parse(p)
 css=(ROOT/'experience.css').read_text(encoding='utf-8')
 assert 'prefers-reduced-motion' in css and '@media(max-width:680px)' in css

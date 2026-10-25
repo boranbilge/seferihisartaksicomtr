@@ -62,3 +62,10 @@ indexed[0].save(ASSETS/'taksi-cagir.gif',save_all=True,append_images=indexed[1:]
 shutil.copy2(ASSETS/'taksi-cagir.gif',KIT/'mobil-taksi-cagir-960x180.gif')
 shutil.copy2(ASSETS/'taksi-cagir.png',KIT/'mobil-taksi-cagir-sabit.png')
 print('Logo, PNG sosyal görsel, uygulama ikonları ve 960x180 animasyonlu GIF oluşturuldu.')
+premium=BASE/'assets-source'/'banner-premium.gif'
+if premium.is_file():
+ shutil.copy2(premium,ASSETS/'banner-premium.gif')
+ with Image.open(premium) as uploaded:
+  uploaded.seek(0)
+  uploaded.convert('RGB').save(ASSETS/'banner-premium-still.png',optimize=True)
+ shutil.copy2(premium,KIT/'seferihisar-taksi-premium-1280x280.gif')

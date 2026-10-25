@@ -52,6 +52,7 @@ for path in root.rglob('index.html'):
  s=s.replace('<b>TAKSİ</b>','<b>TAKSİ <i>7/24</i></b>')
  s=s.replace('Bize ulaşın <span>↗</span>', 'Hemen ara <span>↗</span>').replace('class="button dark headercta" href="#iletisim"','class="button dark headercta" href="tel:'+PHONE+'"')
  banner=f'''<div class="call-banner"><a href="tel:{PHONE}" aria-label="Seferihisar’da taksi çağırmak için tıklayınız. {DISPLAY}"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/taksi-cagir.png"><img src="/assets/taksi-cagir.gif" width="960" height="180" alt="Seferihisar’da taksi çağırmak için tıklayınız · {DISPLAY}" fetchpriority="high"></picture></a></div>'''
+ banner=banner.replace('/assets/taksi-cagir.png','/assets/banner-premium-still.png').replace('/assets/taksi-cagir.gif','/assets/banner-premium.gif').replace('width="960" height="180"','width="1280" height="280"')
  s=s.replace('</header>','</header>'+banner)
  hero=f'{area}.<br><em>Yola çıkalım.</em>' if area else 'Şehir sakin.<br><em>Senin yolun açık.</em>'
  s=re.sub(r'<h1>.*?</h1>',f'<h1>{hero}</h1>',s)
