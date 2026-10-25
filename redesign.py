@@ -12,6 +12,8 @@ DISPLAY=CFG['display_phone']
 WA='https://wa.me/'+CFG['whatsapp']
 HELLO=WA+'?text='+quote('Merhaba, Seferihisar’da taksi talep etmek istiyorum.')
 root=BASE/'dist'
+import shutil
+shutil.copyfile(BASE/'mobile.css',root/'mobile.css')
 runpy.run_path(str(BASE/'build_base.py'))
 runpy.run_path(str(BASE/'make_assets.py'))
 areas=[('camikebir','Camikebir'),('hidirlik','Hıdırlık'),('turabiye','Turabiye'),('colak-ibrahim-bey','Çolak İbrahim Bey'),('tepecik','Tepecik'),('sigacik','Sığacık'),('akarca','Akarca'),('ulamis','Ulamış')]
@@ -47,6 +49,8 @@ for path in root.rglob('index.html'):
  business={'@type':'LocalBusiness','@id':ORIGIN+'/#isletme','name':NAME,'alternateName':'Seferihisar Taxi 7/24','url':ORIGIN+'/','telephone':PHONE,'logo':ORIGIN+'/assets/logo-mark.svg','image':ORIGIN+'/assets/social.png','address':{'@type':'PostalAddress','streetAddress':'Hıdırlık Mahallesi, 70 Sokak No:5','addressLocality':'Seferihisar','addressRegion':'İzmir','addressCountry':'TR'},'openingHoursSpecification':{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],'opens':'00:00','closes':'23:59'},'areaServed':[{'@type':'Place','name':n} for _,n in areas]}
  data['@graph'] += [business,{'@type':'TaxiService','name':f'{area or "Seferihisar"} Taksi','provider':{'@id':ORIGIN+'/#isletme'},'areaServed':{'@type':'Place','name':area or 'Seferihisar, İzmir'},'availableChannel':{'@type':'ServiceChannel','servicePhone':{'@type':'ContactPoint','telephone':PHONE,'contactType':'customer service','availableLanguage':'Turkish'}}}]
  s=re.sub(r'<script type="application/ld\+json">.*?</script>',lambda _: '<script type="application/ld+json">'+json.dumps(data,ensure_ascii=False)+'</script>',s)
+ s=s.replace('</head>','<link rel="stylesheet" href="/mobile.css"></head>')
+ s=s.replace('width=device-width,initial-scale=1','width=device-width,initial-scale=1,viewport-fit=cover')
  s=s.replace('<body>','<body><div class="scroll-progress" aria-hidden="true"></div>')
  s=re.sub(r'<span class="brandicon">.*?</span></span>', '<img class="brandmark" src="/assets/logo-mark.svg" width="46" height="46" alt="">',s)
  s=s.replace('<b>TAKSİ</b>','<b>TAKSİ <i>7/24</i></b>')
