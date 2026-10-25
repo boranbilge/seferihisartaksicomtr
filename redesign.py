@@ -85,6 +85,17 @@ for path in root.rglob('index.html'):
  else:
   statement=f'<section class="section statement"><p class="eyebrow">SEFERİHİSAR’DA TAKSİ</p><p class="statement-text">Gideceğin yer belli.<br>Geriye sadece <em>yola çıkmak</em> kaldı.</p><div class="statement-bottom"><p>Bir arama. Bir konum.<br>Yolculuğun ilk adımı bu kadar.</p><a href="tel:{PHONE}">{DISPLAY} ↗</a></div></section>'
   s=s.replace('<section id="bolgeler"',statement+'<section id="bolgeler"')
+ # Keep the local voice direct; contact details matter more than repeated slogans.
+ s=s.replace('Şehir sakin.<br><em>Senin yolun açık.</em>','Seferihisar’da<br><em>taksi mi lazım?</em>')
+ s=s.replace('Seferihisar’da taksi, bir telefon uzağında.<br>Merkezden sahile, gün doğumundan geceye.<br>Bir sonraki yolculuğunuz burada başlıyor.','Merkezde, mahallede ya da sahilde.<br>Bizi arayın veya WhatsApp’tan konumunuzu gönderin.<br>Nereden alınacağınızı birlikte netleştirelim.')
+ s=s.replace('İZMİR’İN SAKİN ŞEHRİNDE, YOL ARKADAŞINIZ.','SEFERİHİSAR TAKSİ 7/24 · 0551 218 22 44')
+ s=s.replace('YEREL ROTALAR. YENİ HİKÂYELER.','Hıdırlık Mahallesi · Seferihisar / İzmir')
+ s=s.replace('Bir şehir.<br><em>Birçok güzel rota.</em>','Merkeze, sahile<br><em>ve havalimanına.</em>')
+ s=s.replace('Günlük işler, sahil kaçamakları ya da bir uçuş.<br>İhtiyacınıza uygun yolculuğu birlikte planlayın.','Nereye gideceğinizi ve ne zaman yola çıkmak istediğinizi söyleyin. Araç uygunluğunu telefonla görüşelim.')
+ s=s.replace('Gideceğin yer belli.<br>Geriye sadece <em>yola çıkmak</em> kaldı.','Seferihisar’da taksi için<br><em>konumunuzu göndermeniz yeterli.</em>')
+ s=s.replace('Bir arama. Bir konum.<br>Yolculuğun ilk adımı bu kadar.','Alınacağınız yer, varış adresi ve yolcu sayısı.<br>Geri kalanını görüşerek netleştirelim.')
+ s=s.replace('Bir telefon.<br><em>Yepyeni bir rota.</em>','Bizi arayın.<br><em>Ya da konum gönderin.</em>')
+ s=s.replace('Şehrin ritmini biliyoruz.<br>Yolculuğunuzu önemsiyoruz.','Seferihisar merkez ve çevre mahalleler.<br>Telefon ve WhatsApp: 0551 218 22 44')
  path.write_text(s,encoding='utf-8')
 
 for f in ['robots.txt','sitemap.xml']:

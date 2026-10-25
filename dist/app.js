@@ -45,9 +45,4 @@
  const updateScroll=()=>{scheduled=false;const extent=document.documentElement.scrollHeight-window.innerHeight;if(progress)progress.style.transform=`scaleX(${extent>0?Math.min(1,Math.max(0,window.scrollY/extent)):0})`;};
  window.addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateScroll);}},{passive:true});
  updateScroll();
- const art=$('.hero-art');let artFrame=0;
- if(art&&!reduced.matches&&matchMedia('(pointer:fine)').matches){
-  art.addEventListener('pointermove',e=>{if(artFrame)return;const x=e.clientX,y=e.clientY;artFrame=requestAnimationFrame(()=>{const r=art.getBoundingClientRect();art.style.animation='none';art.style.transform=`perspective(1200px) rotateY(${(x-r.left)/r.width*10-10}deg) rotateX(${4-(y-r.top)/r.height*6}deg)`;artFrame=0;});});
-  art.addEventListener('pointerleave',()=>{if(artFrame){cancelAnimationFrame(artFrame);artFrame=0;}art.style.transform='';});
- }
 })();
