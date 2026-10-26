@@ -42,6 +42,11 @@ for path in root.rglob('index.html'):
  # Hero buttons get icons, like the dock.
  s=re.sub(r'(<a class="button yellow" href="tel:[^"]+">)Taksi çağır',lambda m:m[1]+PHONE_SVG+'Taksi çağır',s,count=1)
  s=re.sub(r'(<a class="button outline"[^>]*>)WhatsApp',lambda m:m[1]+WA_SVG+'WhatsApp',s,count=1)
+ s=re.sub(r'(<div class="hero-copy">)<p class="eyebrow">.*?</p>',r'\1',s,count=1)
+ # Repeat the call banner directly under the header; the original stays below the hero.
+ if 'top-banner' not in s:
+  banner=re.search(r'<div class="call-banner">.*?</div>',s)[0]
+  s=s.replace('</header>','</header>'+banner.replace('class="call-banner"','class="call-banner top-banner"'),1)
  if slug:
   title=re.search(r'<title>(.*?) Taksi \|',s)[1]
   s=re.sub(r'<h1>.*?</h1>',f'<h1>{locative[slug]}<br><em>taksi mi lazım?</em></h1>',s,count=1)

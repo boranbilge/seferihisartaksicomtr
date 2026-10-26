@@ -1,11 +1,6 @@
-/* Mobile upgrade: live status, animated scene, swipeable services, region chips, smart contact dock. */
-@keyframes live-ping{0%{box-shadow:0 0 0 0 #3ddc8499}80%,100%{box-shadow:0 0 0 9px #3ddc8400}}
+/* Mobile upgrade: animated scene, swipeable services, region chips, smart contact dock. */
 @keyframes text-shine{to{background-position:200% center}}
 @keyframes cta-glow{0%,100%{box-shadow:0 10px 26px #f4d34833}50%{box-shadow:0 12px 34px #f4d34866}}
-
-/* Live "open now" dot in the hero eyebrow. */
-.hero .eyebrow i{background:#3ddc84;animation:live-ping 1.8s ease-out infinite}
-.hero .eyebrow:after{content:'ŞU AN AÇIK';margin-left:10px;padding:3px 8px;border-radius:20px;background:#3ddc8418;border:1px solid #3ddc8455;color:#8ff0b8;font-size:9px;letter-spacing:1px}
 
 /* Highlighted keyword in every hero heading. */
 h1 em{background:linear-gradient(100deg,#f4d348 20%,#fff1b0 40%,#f4d348 60%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -28,7 +23,6 @@ h1 em{background:linear-gradient(100deg,#f4d348 20%,#fff1b0 40%,#f4d348 60%);bac
 @media(max-width:960px){
  .crumbs{padding:16px var(--page-gutter) 0}
  .hero{padding-top:22px}
- .hero .eyebrow{display:flex;align-items:center}
  .hero-actions .button{font-size:14px;border-radius:16px;padding-inline:10px;gap:8px}
  .hero-actions .button>span{display:none}
  .hero-actions .button.yellow{box-shadow:0 10px 26px #f4d34833}
@@ -68,4 +62,9 @@ h1 em{background:linear-gradient(100deg,#f4d348 20%,#fff1b0 40%,#f4d348 60%);bac
  .motion-ready .reveal.visible{opacity:1;transform:none}
 }
 
-@media(max-width:360px){.region-links{grid-template-columns:1fr}.hero .eyebrow:after{display:none}}
+@media(max-width:360px){.region-links{grid-template-columns:1fr}}
+
+/* Call banner repeated under the header. */
+.top-banner{justify-content:center;padding:18px 5% 0}
+.top-banner>a{width:min(100%,740px);border-radius:16px;border:1px solid #ffffff16;box-shadow:0 14px 35px #0003}
+@media(max-width:960px){main>.call-banner.top-banner,.call-banner.top-banner{padding:14px var(--page-gutter) 0}.top-banner>a{border-radius:12px}}
