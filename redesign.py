@@ -83,7 +83,7 @@ for path in root.rglob('index.html'):
  s=s.replace('Telefon ve WhatsApp hattı eklendiğinde<br>buradan doğrudan ulaşabilirsiniz.','Telefon ve WhatsApp hattımız.<br>Gece. Gündüz. Her gün.')
  s=s.replace('<a href="#yolculuk" class="button dark">Yolculuk notu hazırlayın ↗</a>',f'<a href="{HELLO}" class="button dark" target="_blank" rel="noopener noreferrer">WhatsApp’tan ulaşın ↗</a>')
  s=s.replace('Bir sonraki yolculuk<br>burada başlıyor. <span>↗</span>','Bir telefon.<br><em>Yepyeni bir rota.</em>')
- s=s.replace('<div class="mobile-bar"><a href="#yolculuk">Yolculuk planla ↗</a><a href="#iletisim">İletişim ↗</a></div>',f'<div class="mobile-bar"><a href="tel:{PHONE}">↗ Taksi çağır</a><a href="{HELLO}" target="_blank" rel="noopener noreferrer">◉ WhatsApp</a></div>')
+ s=s.replace('<div class="mobile-bar"><a href="#yolculuk">Yolculuk planla ↗</a><a href="#iletisim">İletişim ↗</a></div>',f'<div class="mobile-bar"><a href="tel:{PHONE}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-3 2a14 14 0 0 0 6 6l2-3 5 2v4c0 2-2 3-4 2C9 19 5 15 3 7 2 5 3 3 5 3Z"/></svg><span>Taksi çağır</span></a><a href="{HELLO}" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.3 7.9L3 21l1.6-4.7A9 9 0 1 1 21 11.5Z"/><path d="M8 7c0 5 2 7 7 8l1-2-3-1-1 1-2-2 1-1-1-3Z"/></svg><span>WhatsApp</span></a></div>')
  s=s.replace('İletişim bölümünden hareket noktanızı, gideceğiniz adresi ve yolcu sayısını paylaşarak araç uygunluğunu öğrenebilirsiniz.',f'{DISPLAY} numarasını arayabilir veya WhatsApp’tan konum gönderebilirsiniz. Hareket noktanızı, varış adresinizi ve yolcu sayısını paylaşın. Araç uygunluğu ve alınış saati görüşmede kesinleşir.')
  s=s.replace('Seferihisar merkezden nasıl taksi talep edebilirim?','Seferihisar’da taksi nasıl çağırabilirim?')
  if area:
@@ -104,7 +104,7 @@ for path in root.rglob('index.html'):
  s=s.replace('Bir telefon.<br><em>Yepyeni bir rota.</em>','Bizi arayın.<br><em>Ya da konum gönderin.</em>')
  s=s.replace('Şehrin ritmini biliyoruz.<br>Yolculuğunuzu önemsiyoruz.','Seferihisar merkez ve çevre mahalleler.<br>Telefon ve WhatsApp: 0551 218 22 44')
  # Real service imagery replaces decorative symbols on every regional page too.
- service_images=[('merkez-mahalleler','Seferihisar mahalle ulaşımını temsil eden Ege sokağında sarı taksi'),('sigacik-sahil','Sığacık sahil ulaşımını temsil eden marina kıyısında sarı taksi'),('havalimani','Havalimanı ulaşımını temsil eden terminal önünde sarı taksi')]
+ service_images=[('merkez-mahalleler','Seferihisar mahalle ulaşımını temsil eden Ege sokakları'),('sigacik-sahil','Sığacık sahil ulaşımını temsil eden liman ve kıyı manzarası'),('havalimani','Havalimanı ulaşımını temsil eden terminal ve yolculuk valizi')]
  for image,alt in service_images:
   s=re.sub(r'<span class="service-icon">.*?</span>',f'<div class="service-visual"><img src="/assets/{image}.webp" width="960" height="640" alt="{alt}" loading="lazy" decoding="async"></div>',s,count=1)
  # A centered callout below the introduction replaces the detached header ad.

@@ -65,3 +65,15 @@ summary{min-height:52px;gap:20px}.faq summary{font-size:16px;font-weight:500}.fa
 /* Keep service art and the callout aligned after responsive layout rules. */
 .services article>a{margin-top:auto}
 @media(max-width:960px){main>.call-banner{padding:0 var(--page-gutter) 28px}}
+
+/* Compact floating contact dock. */
+@media(max-width:960px){
+ .mobile-bar{left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));width:auto;max-width:440px;margin-inline:auto;gap:6px;padding:6px;border:1px solid #ffffff18;border-radius:18px;background:#101e28ed;box-shadow:0 8px 28px #0005,inset 0 1px 0 #ffffff06;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+ .mobile-bar a{box-sizing:border-box;flex:1;min-width:0;min-height:44px;height:44px;padding:0 12px;border:0;border-radius:12px;font-size:13px;font-weight:600;letter-spacing:.1px;gap:8px;line-height:1;white-space:nowrap;background:#f5d547;color:#101a20;transition:background .2s ease,transform .2s ease}
+ .mobile-bar a:last-child{background:transparent;border:0;color:#e4ece9}
+ .mobile-bar svg{width:17px;height:17px;stroke-width:1.7}
+ .mobile-bar a:last-child svg{color:#8ac6a6}
+ .mobile-bar a:active{transform:scale(.97)}
+ .mobile-bar a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+ footer{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+}
