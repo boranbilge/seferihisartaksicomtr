@@ -43,6 +43,8 @@ for path in root.rglob('index.html'):
  s=re.sub(r'(<a class="button yellow" href="tel:[^"]+">)Taksi çağır',lambda m:m[1]+PHONE_SVG+'Taksi çağır',s,count=1)
  s=re.sub(r'(<a class="button outline"[^>]*>)WhatsApp',lambda m:m[1]+WA_SVG+'WhatsApp',s,count=1)
  s=re.sub(r'(<div class="hero-copy">)<p class="eyebrow">.*?</p>',r'\1',s,count=1)
+ # The marina banner below the hero carries the imagery; the illustrated scene is dropped.
+ s=re.sub(r'<div class="hero-art".*?</div></section>','</section>',s,count=1)
  # Repeat the call banner directly under the header; the original stays below the hero.
  if 'top-banner' not in s:
   banner=re.search(r'<div class="call-banner">.*?</div>',s)[0]
