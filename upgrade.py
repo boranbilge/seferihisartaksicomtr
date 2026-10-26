@@ -47,6 +47,10 @@ for path in root.rglob('index.html'):
  if 'top-banner' not in s:
   banner=re.search(r'<div class="call-banner">.*?</div>',s)[0]
   s=s.replace('</header>','</header>'+banner.replace('class="call-banner"','class="call-banner top-banner"'),1)
+ # Below the hero, the marina photo banner replaces the GIF.
+ if 'marina-banner' not in s:
+  marina=f'<div class="call-banner marina-banner"><a href="tel:{CFG["telephone"]}" aria-label="Seferihisar’da taksi çağırmak için arayın: {CFG["display_phone"]}"><img src="/assets/banner-marina-800.webp" srcset="/assets/banner-marina-800.webp 800w, /assets/banner-marina.webp 1600w" sizes="(max-width:960px) 100vw, 900px" width="1600" height="667" alt="Seferihisar Taksi 7/24 · gece marina ışıkları önünde sarı taksi · {CFG["display_phone"]}" loading="lazy" decoding="async"></a></div>'
+  s=re.sub(r'<div class="call-banner">.*?</div>',lambda _:marina,s,count=1)
  if slug:
   title=re.search(r'<title>(.*?) Taksi \|',s)[1]
   s=re.sub(r'<h1>.*?</h1>',f'<h1>{locative[slug]}<br><em>taksi mi lazım?</em></h1>',s,count=1)
