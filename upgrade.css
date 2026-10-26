@@ -1,0 +1,71 @@
+/* Mobile upgrade: live status, animated scene, swipeable services, region chips, smart contact dock. */
+@keyframes live-ping{0%{box-shadow:0 0 0 0 #3ddc8499}80%,100%{box-shadow:0 0 0 9px #3ddc8400}}
+@keyframes text-shine{to{background-position:200% center}}
+@keyframes cta-glow{0%,100%{box-shadow:0 10px 26px #f4d34833}50%{box-shadow:0 12px 34px #f4d34866}}
+
+/* Live "open now" dot in the hero eyebrow. */
+.hero .eyebrow i{background:#3ddc84;animation:live-ping 1.8s ease-out infinite}
+.hero .eyebrow:after{content:'ŞU AN AÇIK';margin-left:10px;padding:3px 8px;border-radius:20px;background:#3ddc8418;border:1px solid #3ddc8455;color:#8ff0b8;font-size:9px;letter-spacing:1px}
+
+/* Highlighted keyword in every hero heading. */
+h1 em{background:linear-gradient(100deg,#f4d348 20%,#fff1b0 40%,#f4d348 60%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.hero-actions .button svg{width:19px;height:19px;flex-shrink:0}
+
+/* Visible breadcrumb on region pages. */
+.crumbs{padding:18px 5% 0;font-size:13px;color:#93a3ab}
+.crumbs ol{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.crumbs li+li:before{content:'/';margin-right:8px;color:#4c5d66}
+.crumbs a{color:#d3dbde;text-decoration:none}.crumbs a:hover{color:var(--yellow)}
+.crumbs [aria-current]{color:var(--yellow)}
+.region-links a[aria-current]{color:var(--yellow)}
+
+@media(prefers-reduced-motion:no-preference){
+ h1 em{animation:text-shine 6s linear infinite}
+ .hero-actions .button.yellow{animation:cta-glow 2.6s ease-in-out infinite}
+}
+
+@media(max-width:960px){
+ .crumbs{padding:16px var(--page-gutter) 0}
+ .hero{padding-top:22px}
+ .hero .eyebrow{display:flex;align-items:center}
+ .hero-actions .button{font-size:14px;border-radius:16px;padding-inline:10px;gap:8px}
+ .hero-actions .button>span{display:none}
+ .hero-actions .button.yellow{box-shadow:0 10px 26px #f4d34833}
+
+ /* Whole taxi in frame, softer scene. */
+ .hero-art{height:clamp(250px,70vw,420px);border:1px solid #2c4652;box-shadow:0 24px 50px #0006,inset 0 1px 0 #ffffff10}
+ .hero-art .taxi{width:84%;left:8%;bottom:14px}
+ .hero-art .sun{top:22px}
+
+ /* Services become a swipeable row with the next card peeking in. */
+ .services{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;margin-inline:calc(var(--page-gutter) * -1);padding:4px var(--page-gutter) 14px;scroll-padding-inline:var(--page-gutter);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ .services::-webkit-scrollbar{display:none}
+ .services article{flex:0 0 84%;scroll-snap-align:start;padding:14px 14px 18px;background:linear-gradient(180deg,#132430,#0e1b25);border:1px solid #ffffff14}
+ .services .service-visual{margin-bottom:16px}
+ .services h3{margin:8px 0 8px}
+ .services a{margin-top:auto;padding-top:12px}
+ .motion-ready .services article.reveal{opacity:1;transform:none}
+ #hizmetler .section-heading:after{content:'Kaydırarak inceleyin →';display:block;margin-top:14px;font-size:12px;letter-spacing:.5px;color:#6f8590}
+
+ /* Regions as tappable chips. */
+ .region-links{grid-template-columns:1fr 1fr;gap:10px}
+ .region-links a{padding:0 14px;min-height:58px;border:1px solid #2a3a44;border-radius:14px;background:#0f1d27;font-size:15px;font-weight:500;letter-spacing:0;transition:background .2s,border-color .2s,transform .2s}
+ .region-links a:active{transform:scale(.97);background:#162a36}
+ .region-links a>span:last-child{font-size:17px}
+ .region-links a[aria-current]{border-color:#f4d34880;background:#f4d34812}
+
+ /* Contact dock appears only after the hero buttons scroll away. */
+ .dock-auto .mobile-bar{transform:translateY(calc(100% + 30px));opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .25s}
+ .dock-auto.dock-on .mobile-bar{transform:none;opacity:1;pointer-events:auto}
+ .mobile-bar a:first-child{box-shadow:0 6px 18px #f4d34840}
+}
+
+@media(max-width:960px) and (prefers-reduced-motion:no-preference){
+ .hero-art .taxi{animation:taxi-float 6s ease-in-out infinite}
+ .hero-art .roadline{animation:road-travel 5s linear infinite}
+ .motion-ready .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+ .motion-ready .reveal.visible{opacity:1;transform:none}
+}
+
+@media(max-width:360px){.region-links{grid-template-columns:1fr}.hero .eyebrow:after{display:none}}

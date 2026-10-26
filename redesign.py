@@ -116,4 +116,5 @@ for f in ['robots.txt','sitemap.xml']:
  p=root/f
  p.write_text(p.read_text(encoding='utf-8').replace('https://seferihisar-taksi-merkez.rubysage32.chatgpt.site',ORIGIN),encoding='utf-8')
 (root/'site.webmanifest').write_text(json.dumps({'name':NAME,'short_name':'Taksi 7/24','lang':'tr','start_url':'/','scope':'/','display':'standalone','background_color':'#09131c','theme_color':'#09131c','icons':[{'src':'/assets/icon-192.png','sizes':'192x192','type':'image/png'},{'src':'/assets/icon-512.png','sizes':'512x512','type':'image/png'}]},ensure_ascii=False),encoding='utf-8')
+runpy.run_path(str(BASE/'upgrade.py'))
 print('Yeni tasarım, telefon/WhatsApp, 9 özgün sayfa ve yerel SEO verileri hazır.')

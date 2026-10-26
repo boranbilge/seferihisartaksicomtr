@@ -41,6 +41,12 @@
   // Content always returns if motion preference changes at runtime.
   reduced.addEventListener('change',()=>{document.documentElement.classList.remove('motion-ready');});
  }
+ // The contact dock repeats the hero buttons, so show it only once they have scrolled out of view.
+ const dock=$('.mobile-bar'),heroActions=$('.hero-actions');
+ if(dock&&heroActions&&'IntersectionObserver' in window){
+  document.documentElement.classList.add('dock-auto');
+  new IntersectionObserver(([entry])=>document.documentElement.classList.toggle('dock-on',!entry.isIntersecting&&entry.boundingClientRect.top<0)).observe(heroActions);
+ }
  const progress=$('.scroll-progress');let scheduled=false;
  const updateScroll=()=>{scheduled=false;const extent=document.documentElement.scrollHeight-window.innerHeight;if(progress)progress.style.transform=`scaleX(${extent>0?Math.min(1,Math.max(0,window.scrollY/extent)):0})`;};
  window.addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateScroll);}},{passive:true});
